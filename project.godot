@@ -15,6 +15,10 @@ run/main_scene="uid://id3apbuwewhb"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://Assets/Vectors/icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Robo Rampage"
