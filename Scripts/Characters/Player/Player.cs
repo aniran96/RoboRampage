@@ -12,6 +12,8 @@ public partial class Player : CharacterBody3D
 	private float _mouseSensitivity = 0.001f;
 	[Export]
 	private float _jumpHeight = 1.0f;
+	[Export]
+	private float _fallMultiplier = 2.5f;
 
 	// variables
 	private Vector2 _mouseMotion = Vector2.Zero;
@@ -30,7 +32,15 @@ public partial class Player : CharacterBody3D
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity += gravity * (float)delta;
+			if ( velocity.Y >= 0 ) 
+			{
+				velocity.Y += gravity.Y * (float)delta;
+			}
+			else 
+			{
+				velocity.Y += gravity.Y * (float)delta * _fallMultiplier;
+			}
+
 		}
 
 		// Handle Jump.
