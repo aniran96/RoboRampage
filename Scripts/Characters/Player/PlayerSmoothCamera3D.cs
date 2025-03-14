@@ -1,9 +1,8 @@
-using System;
 using Godot;
 
 public partial class PlayerSmoothCamera3D : Camera3D
 {
-    // exported variables
+    // variables
     [ Export ]
     private float _speed = 44.0f;
 

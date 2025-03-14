@@ -6,8 +6,7 @@ public partial class Player : CharacterBody3D
 	// node references
 	private Node3D _cameraPivotNode;
 
-
-	// exported variables
+	// variables
 	[ Export ]
 	private float _mouseSensitivity = 0.001f;
 	[Export]
@@ -15,21 +14,21 @@ public partial class Player : CharacterBody3D
 	[Export]
 	private float _fallMultiplier = 2.5f;
 
-	// variables
 	private Vector2 _mouseMotion = Vector2.Zero;
 	
     public override void _Ready()
     {
+		AddToGroup( nameof(Player) );
 		_cameraPivotNode = GetNode<Node3D>( GameConstants.CAMERA_PIVOT );
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
+
 
     public override void _PhysicsProcess(double delta)
 	{
 		HandleCameraRotation();
 		Vector3 velocity = Velocity;
 		var gravity = GetGravity();
-		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			if ( velocity.Y >= 0 ) 
@@ -40,17 +39,11 @@ public partial class Player : CharacterBody3D
 			{
 				velocity.Y += gravity.Y * (float)delta * _fallMultiplier;
 			}
-
 		}
-
-		// Handle Jump.
 		if (Input.IsActionJustPressed( GameConstants.JUMP ) && IsOnFloor())
 		{
 			velocity.Y = (float)Math.Sqrt(_jumpHeight * 2.0 * -gravity.Y);
 		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector(GameConstants.INPUT_LEFT, GameConstants.INPUT_RIGHT, GameConstants.INPUT_FRONT, GameConstants.INPUT_BACK);
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
@@ -63,7 +56,6 @@ public partial class Player : CharacterBody3D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, GameConstants.SPEED);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, GameConstants.SPEED);
 		}
-
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -77,7 +69,6 @@ public partial class Player : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			} 
 		}
-
 		if ( Input.MouseMode == Input.MouseModeEnum.Captured ) 
 		{
 
@@ -85,9 +76,7 @@ public partial class Player : CharacterBody3D
 			{
 				_mouseMotion = -mouseMotionEvent.Relative * _mouseSensitivity;
 			}
-
 		}
-
 	}
 
 	private void HandleCameraRotation() 
@@ -99,6 +88,5 @@ public partial class Player : CharacterBody3D
 									GameConstants.CAMERA_ROTATION_LIMIT );
 		_cameraPivotNode.RotationDegrees = new Vector3( xRotation, _cameraPivotNode.RotationDegrees.Y, _cameraPivotNode.RotationDegrees.Z ); 
 		_mouseMotion = Vector2.Zero;
-
 	}
 }

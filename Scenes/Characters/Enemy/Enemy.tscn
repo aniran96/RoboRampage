@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://61y5x00pjkmj"]
+[gd_scene load_steps=4 format=3 uid="uid://61y5x00pjkmj"]
 
+[ext_resource type="Script" uid="uid://br5vor6n4btth" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_4uku2"]
 [ext_resource type="CapsuleMesh" uid="uid://fkk867kl5063" path="res://Resources/Files/Meshes/CapsuleMesh.tres" id="1_ohplv"]
 [ext_resource type="Shape3D" uid="uid://d1anjug6eqjou" path="res://Resources/Files/Meshes/CapsuleCollider.tres" id="2_4uku2"]
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("_enemyNavigationAgent3DNode")]
+script = ExtResource("1_4uku2")
+_enemyNavigationAgent3DNode = NodePath("EnemyNavigationAgent3D")
 
 [node name="EnemyMesh3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_ohplv")
@@ -12,3 +15,4 @@ mesh = ExtResource("1_ohplv")
 shape = ExtResource("2_4uku2")
 
 [node name="EnemyNavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
