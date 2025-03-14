@@ -5,8 +5,11 @@ public class GameConstants
 {
     public  const float SPEED = 5.0f;
 	public  const float JUMP_VELOCITY = 4.5f;
+    public const float SMOOTH_CAMERA_CLAMP_MIN = 0.0F;
+    public const float SMOOTH_CAMERA_CLAMP_MAX = 0.1F;
     public const string CAMERA_PIVOT = "CameraPivot";
     public const int CAMERA_ROTATION_LIMIT = 90;
+    
     public static readonly StringName INPUT_LEFT = "move_left";
     public static readonly StringName INPUT_FRONT = "move_front";
     public static readonly StringName INPUT_RIGHT = "move_right";
