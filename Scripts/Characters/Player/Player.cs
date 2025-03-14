@@ -1,12 +1,29 @@
 using Godot;
 using System;
+using System.Data.SqlTypes;
 
 public partial class Player : CharacterBody3D
 {
-	
+	// node references
+	private Node3D _cameraPivotNode;
 
-	public override void _PhysicsProcess(double delta)
+
+	// exported variables
+	[ Export ]
+	private float _mouseSensitivity = 0.001f;
+
+	// variables
+	private Vector2 _mouseMotion = Vector2.Zero;
+
+    public override void _Ready()
+    {
+		_cameraPivotNode = GetNode<Node3D>( GameConstants.CAMERA_PIVOT );
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
+		HandleCameraRotation();
 		Vector3 velocity = Velocity;
 
 		// Add the gravity.
@@ -38,5 +55,39 @@ public partial class Player : CharacterBody3D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public override void _Input( InputEvent @event ) 
+	{
+		if ( @event is InputEventKey inputEventKey ) 
+		{
+			if ( inputEventKey.IsActionPressed( GameConstants.FREE_CAMERA ) )
+			{
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			} 
+		}
+
+		if ( Input.MouseMode == Input.MouseModeEnum.Captured ) 
+		{
+
+			if ( @event is InputEventMouseMotion mouseMotionEvent ) 
+			{
+				_mouseMotion = -mouseMotionEvent.Relative * _mouseSensitivity;
+			}
+
+		}
+
+	}
+
+	private void HandleCameraRotation() 
+	{
+		RotateY( _mouseMotion.X );
+		_cameraPivotNode.RotateX( _mouseMotion.Y );
+		var xRotation = Mathf.Clamp( _cameraPivotNode.RotationDegrees.X, 
+									-GameConstants.CAMERA_ROTATION_LIMIT, 
+									GameConstants.CAMERA_ROTATION_LIMIT );
+		_cameraPivotNode.RotationDegrees = new Vector3( xRotation, _cameraPivotNode.RotationDegrees.Y, _cameraPivotNode.RotationDegrees.Z ); 
+		_mouseMotion = Vector2.Zero;
+
 	}
 }
