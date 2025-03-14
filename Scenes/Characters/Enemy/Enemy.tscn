@@ -11,4 +11,4 @@ mesh = ExtResource("1_ohplv")
 [node name="EnemyCollider3D" type="CollisionShape3D" parent="."]
 shape = ExtResource("2_4uku2")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="EnemyNavigationAgent3D" type="NavigationAgent3D" parent="."]
