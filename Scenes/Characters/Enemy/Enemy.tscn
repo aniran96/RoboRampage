@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://61y5x00pjkmj"]
+
+[ext_resource type="CapsuleMesh" uid="uid://fkk867kl5063" path="res://Resources/Files/Meshes/CapsuleMesh.tres" id="1_ohplv"]
+[ext_resource type="Shape3D" uid="uid://d1anjug6eqjou" path="res://Resources/Files/Meshes/CapsuleCollider.tres" id="2_4uku2"]
+
+[node name="Enemy" type="CharacterBody3D"]
+
+[node name="EnemyMesh3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ohplv")
+
+[node name="EnemyCollider3D" type="CollisionShape3D" parent="."]
+shape = ExtResource("2_4uku2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
