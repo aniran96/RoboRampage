@@ -1,6 +1,5 @@
-using Godot;
 using System;
-using System.Data.SqlTypes;
+using Godot;
 
 public partial class Player : CharacterBody3D
 {
@@ -11,10 +10,12 @@ public partial class Player : CharacterBody3D
 	// exported variables
 	[ Export ]
 	private float _mouseSensitivity = 0.001f;
+	[Export]
+	private float _jumpHeight = 1.0f;
 
 	// variables
 	private Vector2 _mouseMotion = Vector2.Zero;
-
+	
     public override void _Ready()
     {
 		_cameraPivotNode = GetNode<Node3D>( GameConstants.CAMERA_PIVOT );
@@ -25,17 +26,17 @@ public partial class Player : CharacterBody3D
 	{
 		HandleCameraRotation();
 		Vector3 velocity = Velocity;
-
+		var gravity = GetGravity();
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
+			velocity += gravity * (float)delta;
 		}
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed( GameConstants.JUMP ) && IsOnFloor())
 		{
-			velocity.Y = GameConstants.JUMP_VELOCITY;
+			velocity.Y = (float)Math.Sqrt(_jumpHeight * 2.0 * -gravity.Y);
 		}
 
 		// Get the input direction and handle the movement/deceleration.
