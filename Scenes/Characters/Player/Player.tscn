@@ -18,4 +18,6 @@ shape = SubResource("CapsuleShape3D_no7dv")
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="PlayerCamera3D" type="Camera3D" parent="CameraPivot"]
+[node name="PlayerSmoothCamera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+top_level = true
