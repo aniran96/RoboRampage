@@ -6,7 +6,11 @@ public partial class HitScanWeapon : Node3D
 	private Timer _coolDownTimerNode;
 
 	[Export]
+	private RayCast3D _weaponRayCast3DNode;
+
+	[Export]
 	private Node3D _weaponMesh;
+
 
 	//variables
 	[Export]
@@ -15,7 +19,8 @@ public partial class HitScanWeapon : Node3D
 	private float _recoilDist;
 	[Export]
 	private float _lerpFactor = 10.0f;
-
+	[Export]
+	private float _rayCastDist = 100.0f;
 	private Vector3 _weaponStartPos;
 
 	// Called when the node enters the scene tree for the first time.
@@ -23,6 +28,9 @@ public partial class HitScanWeapon : Node3D
 	{
 		_weaponStartPos = _weaponMesh.Position;
 		_coolDownTimerNode = GetNode<Timer>(GameConstants.COOLDOWNTIMER);
+		
+		_weaponRayCast3DNode.Position = _weaponMesh.Position;
+		_weaponRayCast3DNode.TargetPosition = new Vector3(_weaponRayCast3DNode.Position.X, _weaponRayCast3DNode.Position.Y, -_rayCastDist);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +52,7 @@ public partial class HitScanWeapon : Node3D
 		_coolDownTimerNode.Start(1.0 / _fireRate);
 		_weaponMeshPosition.Z += _recoilDist;
 		_weaponMesh.Position = _weaponMeshPosition;
-
+		GD.Print(_weaponRayCast3DNode.GetCollider());
 		GD.Print("Weapon Fired");
 	}
 }
