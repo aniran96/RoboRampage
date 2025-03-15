@@ -19,12 +19,14 @@ public partial class Enemy : CharacterBody3D
 	private float _attackRange = 1.5f;
 	[Export]
 	private int _maxHitPoints = 100;
-	
+	[Export]
+    private int _enemyDamage = 20;
+
 	private bool _isProvoked = false;
 	private float _aggroDistance = 12.0f;
-	private int _hitPoints; 
+	private int _hitPoints;
 
-	public int HitPoints 
+    public int HitPoints 
 	{
 		get {return _hitPoints;}
 		set 
@@ -98,7 +100,7 @@ public partial class Enemy : CharacterBody3D
 
 private void EnemyAttack() 
 {
-	GD.Print("Enemy Attack");
+	_player.HitPoints -= _enemyDamage;
 }
 
 }

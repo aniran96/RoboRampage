@@ -13,11 +13,29 @@ public partial class Player : CharacterBody3D
 	private float _jumpHeight = 1.0f;
 	[Export]
 	private float _fallMultiplier = 2.5f;
+	[Export]
+	private int _maxHitPoints = 100;
+
+	private int _hitPoints;
+
+	public int HitPoints 
+	{
+		get { return _hitPoints;}
+		set 
+		{
+			_hitPoints = value;
+			if ( _hitPoints <= 0 ) 
+			{
+				GetTree().Quit();
+			}
+		}
+	}
 
 	private Vector2 _mouseMotion = Vector2.Zero;
 	
     public override void _Ready()
     {
+		_hitPoints = _maxHitPoints;
 		AddToGroup( nameof(Player) );
 		_cameraPivotNode = GetNode<Node3D>( GameConstants.CAMERA_PIVOT );
         Input.MouseMode = Input.MouseModeEnum.Captured;
