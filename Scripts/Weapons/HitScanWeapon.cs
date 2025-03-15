@@ -27,11 +27,19 @@ public partial class HitScanWeapon : Node3D
 		{
 			if (_coolDownTimerNode.IsStopped()) 
 			{
-				_coolDownTimerNode.Start(1.0 / _fireRate);
-				GD.Print("Weapon Fired");
+				Shoot();
 			}
 		}
 	}
 
-	private void Shoot() {}
+	private void Shoot() 
+	{
+		var _weaponMeshPosition = _weaponMesh.Position;
+		_coolDownTimerNode.Start(1.0 / _fireRate);
+		_weaponMeshPosition.Z += _recoilDist;
+		_weaponMesh.Position = _weaponMeshPosition;
+
+		GD.Print("Weapon Fired");
+	}
 }
+				
