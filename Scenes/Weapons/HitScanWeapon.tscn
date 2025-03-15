@@ -4,5 +4,6 @@
 
 [node name="HitScanWeapon" type="Node3D"]
 script = ExtResource("1_e8auj")
+_fireRate = 14.0
 
 [node name="CoolDownTimer" type="Timer" parent="."]
