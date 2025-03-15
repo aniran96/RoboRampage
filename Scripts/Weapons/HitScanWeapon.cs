@@ -13,10 +13,15 @@ public partial class HitScanWeapon : Node3D
 	private float _fireRate;
 	[Export]
 	private float _recoilDist;
+	[Export]
+	private float _lerpFactor = 10.0f;
+
+	private Vector3 _weaponStartPos;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_weaponStartPos = _weaponMesh.Position;
 		_coolDownTimerNode = GetNode<Timer>(GameConstants.COOLDOWNTIMER);
 	}
 
@@ -30,6 +35,7 @@ public partial class HitScanWeapon : Node3D
 				Shoot();
 			}
 		}
+		_weaponMesh.Position = _weaponMesh.Position.Lerp( _weaponStartPos, (float)delta * _lerpFactor);
 	}
 
 	private void Shoot() 
