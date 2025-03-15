@@ -5,9 +5,14 @@ public partial class HitScanWeapon : Node3D
 	// node references
 	private Timer _coolDownTimerNode;
 
+	[Export]
+	private Node3D _weaponMesh;
+
 	//variables
 	[Export]
 	private float _fireRate;
+	[Export]
+	private float _recoilDist;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,4 +32,6 @@ public partial class HitScanWeapon : Node3D
 			}
 		}
 	}
+
+	private void Shoot() {}
 }
