@@ -5,6 +5,8 @@ public partial class Enemy : CharacterBody3D
 	// node references
 	[Export]
 	private NavigationAgent3D _enemyNavigationAgent3DNode;
+	[Export]
+	private AnimationPlayer _enemyAnimPlayerNode;
 	
 	// constants
 	public const float Speed = 5.0f;
@@ -47,7 +49,8 @@ public partial class Enemy : CharacterBody3D
 
 		if (_isProvoked == true && distance <= _attackRange) 
 		{
-			GD.Print("Enemy Attack");
+			_enemyAnimPlayerNode.Play(GameConstants.ENEMY_ATTACK);
+			
 		}
 
 		var direction = GlobalPosition.DirectionTo(nextPathPosition);
@@ -74,4 +77,10 @@ public partial class Enemy : CharacterBody3D
 		adjustedDirection.Y = 0;
 		LookAt(GlobalPosition + adjustedDirection, Vector3.Up, true);
 	}
+
+private void EnemyAttack() 
+{
+	GD.Print("Enemy Attack");
+}
+
 }

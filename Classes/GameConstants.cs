@@ -16,5 +16,6 @@ public class GameConstants
     public static readonly StringName INPUT_BACK = "move_back";
     public static readonly StringName JUMP = "jump";
     public static readonly StringName FREE_CAMERA = "free_camera";
+    public static readonly StringName ENEMY_ATTACK = "Attack";
     
 }
