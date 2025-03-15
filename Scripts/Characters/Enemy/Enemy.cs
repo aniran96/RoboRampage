@@ -13,6 +13,9 @@ public partial class Enemy : CharacterBody3D
 	// variables
 	private Player _player;
 
+	[Export]
+	private float _attackRange = 1.5f;
+
 	private bool _isProvoked = false;
 	private float _aggroDistance = 12.0f;
 
@@ -42,10 +45,16 @@ public partial class Enemy : CharacterBody3D
 			_isProvoked = true; 
 		}
 
+		if (_isProvoked == true && distance <= _attackRange) 
+		{
+			GD.Print("Enemy Attack");
+		}
+
 		var direction = GlobalPosition.DirectionTo(nextPathPosition);
 
 		if (direction != Vector3.Zero)
 		{
+			LookAtTarget(direction);			
 			velocity.X = direction.X * Speed;
 			velocity.Z = direction.Z * Speed;
 		}
@@ -57,5 +66,12 @@ public partial class Enemy : CharacterBody3D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void LookAtTarget( Vector3 direction ) 
+	{
+		Vector3 adjustedDirection = direction;
+		adjustedDirection.Y = 0;
+		LookAt(GlobalPosition + adjustedDirection, Vector3.Up, true);
 	}
 }
