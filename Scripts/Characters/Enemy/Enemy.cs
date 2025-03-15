@@ -17,12 +17,30 @@ public partial class Enemy : CharacterBody3D
 
 	[Export]
 	private float _attackRange = 1.5f;
-
+	[Export]
+	private int _maxHitPoints = 100;
+	
 	private bool _isProvoked = false;
 	private float _aggroDistance = 12.0f;
+	private int _hitPoints; 
+
+	public int HitPoints 
+	{
+		get {return _hitPoints;}
+		set 
+		{
+			_hitPoints = value;
+			if (_hitPoints <= 0) 
+			{
+				QueueFree();
+			}
+			_isProvoked = true;
+		}
+	}
 
     public override void _Ready()
     {
+		_hitPoints = _maxHitPoints;
         _player = (Player)GetTree().GetFirstNodeInGroup( nameof(Player) );
     }
 

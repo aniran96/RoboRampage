@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class HitScanWeapon : Node3D
 {
@@ -21,6 +22,9 @@ public partial class HitScanWeapon : Node3D
 	private float _lerpFactor = 10.0f;
 	[Export]
 	private float _rayCastDist = 100.0f;
+	[Export]
+	private int _weaponDamage = 15;
+
 	private Vector3 _weaponStartPos;
 
 	// Called when the node enters the scene tree for the first time.
@@ -52,8 +56,18 @@ public partial class HitScanWeapon : Node3D
 		_coolDownTimerNode.Start(1.0 / _fireRate);
 		_weaponMeshPosition.Z += _recoilDist;
 		_weaponMesh.Position = _weaponMeshPosition;
-		GD.Print(_weaponRayCast3DNode.GetCollider());
-		GD.Print("Weapon Fired");
+		var collider = _weaponRayCast3DNode.GetCollider();
+		GD.Print(collider);
+		if ( collider != null && (collider.IsClass( nameof( CharacterBody3D ) ) ) )
+		{
+			Enemy enemy = (Enemy)collider;
+			enemy.HitPoints -= _weaponDamage;
+		}
+		else 
+		{
+			return;
+		}
+
 	}
 }
 				
