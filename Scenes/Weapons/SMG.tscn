@@ -9,5 +9,3 @@ _weaponMesh = NodePath("SMGMesh")
 
 [node name="SMGMesh" parent="." index="1" instance=ExtResource("2_qxla5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.327, -0.446)
-
-[node name="WeaponRayCast3D" type="RayCast3D" parent="." index="2"]

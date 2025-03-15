@@ -29,7 +29,7 @@ public partial class HitScanWeapon : Node3D
 		_weaponStartPos = _weaponMesh.Position;
 		_coolDownTimerNode = GetNode<Timer>(GameConstants.COOLDOWNTIMER);
 		
-		_weaponRayCast3DNode.Position = _weaponMesh.Position;
+	//	_weaponRayCast3DNode.Position = _weaponMesh.Position;
 		_weaponRayCast3DNode.TargetPosition = new Vector3(_weaponRayCast3DNode.Position.X, _weaponRayCast3DNode.Position.Y, -_rayCastDist);
 	}
 

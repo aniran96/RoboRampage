@@ -9,3 +9,6 @@ _recoilDist = 0.05
 
 [node name="CoolDownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="WeaponRayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
