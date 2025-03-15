@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bw67e72111qh7" path="res://Scripts/Characters/Player/PlayerSmoothCamera3D.cs" id="2_8y2kw"]
 [ext_resource type="Script" uid="uid://do0xlw2fivej6" path="res://Scripts/Characters/Player/CrossHair.cs" id="3_gqvyu"]
 [ext_resource type="Shape3D" uid="uid://d1anjug6eqjou" path="res://Resources/Files/Meshes/CapsuleCollider.tres" id="3_gu5w3"]
-[ext_resource type="PackedScene" uid="uid://ccmxp13s7s487" path="res://Assets/Models/Weapons/SMG.glb" id="5_gu5w3"]
+[ext_resource type="PackedScene" uid="uid://cd50qg0r0vmar" path="res://Scenes/Weapons/SMG.tscn" id="5_gu5w3"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_no7dv")
@@ -25,7 +25,6 @@ top_level = true
 script = ExtResource("2_8y2kw")
 
 [node name="SMG" parent="CameraPivot/PlayerSmoothCamera3D" instance=ExtResource("5_gu5w3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.327, -0.446)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

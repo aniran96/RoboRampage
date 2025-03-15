@@ -7,3 +7,4 @@ script = ExtResource("1_e8auj")
 _fireRate = 14.0
 
 [node name="CoolDownTimer" type="Timer" parent="."]
+one_shot = true
