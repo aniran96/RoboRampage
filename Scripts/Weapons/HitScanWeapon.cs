@@ -29,6 +29,8 @@ public partial class HitScanWeapon : Node3D
 	private float _rayCastDist = 100.0f;
 	[Export]
 	private int _weaponDamage = 15;
+	[Export]
+	private bool _isAutomatic = true;
 
 	private Vector3 _weaponStartPos;
 
@@ -45,11 +47,25 @@ public partial class HitScanWeapon : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionPressed(GameConstants.SHOOT)) 
+		if ( _isAutomatic )
 		{
-			if (_coolDownTimerNode.IsStopped()) 
+			if (Input.IsActionPressed(GameConstants.SHOOT)) 
 			{
-				Shoot();
+				if (_coolDownTimerNode.IsStopped()) 
+				{
+					Shoot();
+				}
+			}
+		}
+		else 
+		{
+			if ( Input.IsActionJustPressed( GameConstants.SHOOT ) ) 
+			{
+				if (_coolDownTimerNode.IsStopped()) 
+				{
+					Shoot();
+				}
+				
 			}
 		}
 		_weaponMesh.Position = _weaponMesh.Position.Lerp( _weaponStartPos, (float)delta * _lerpFactor);
