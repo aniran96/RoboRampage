@@ -3,6 +3,9 @@ using Godot;
 
 public partial class HitScanWeapon : Node3D
 {
+	// scene references
+	[Export] 
+	private PackedScene _sparksScene;
 	// node references
 	private Timer _coolDownTimerNode;
 
@@ -65,12 +68,15 @@ public partial class HitScanWeapon : Node3D
 		{
 			Enemy enemy = (Enemy)collider;
 			enemy.HitPoints -= _weaponDamage;
+			
 		}
 		else 
 		{
 			return;
 		}
-
+		var sparks = _sparksScene.Instantiate<GpuParticles3D>();
+		AddChild(sparks);
+		sparks.GlobalPosition = _weaponRayCast3DNode.GetCollisionPoint();
 	}
 }
 				
