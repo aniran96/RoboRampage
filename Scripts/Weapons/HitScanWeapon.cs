@@ -11,6 +11,8 @@ public partial class HitScanWeapon : Node3D
 
 	[Export]
 	private Node3D _weaponMesh;
+	[Export]
+	private GpuParticles3D _muzzleFlash;
 
 
 	//variables
@@ -52,6 +54,7 @@ public partial class HitScanWeapon : Node3D
 
 	private void Shoot() 
 	{
+		_muzzleFlash.Restart();
 		var _weaponMeshPosition = _weaponMesh.Position;
 		_coolDownTimerNode.Start(1.0 / _fireRate);
 		_weaponMeshPosition.Z += _recoilDist;

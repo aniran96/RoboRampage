@@ -26,9 +26,10 @@ scale_curve = SubResource("CurveTexture_dxyhc")
 [sub_resource type="BoxMesh" id="BoxMesh_dxyhc"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="SMG" node_paths=PackedStringArray("_weaponRayCast3DNode", "_weaponMesh") instance=ExtResource("1_8g7m1")]
+[node name="SMG" node_paths=PackedStringArray("_weaponRayCast3DNode", "_weaponMesh", "_muzzleFlash") instance=ExtResource("1_8g7m1")]
 _weaponRayCast3DNode = NodePath("WeaponRayCast3D")
 _weaponMesh = NodePath("SMGMesh")
+_muzzleFlash = NodePath("MuzzleFlash")
 
 [node name="SMGMesh" parent="." index="1" instance=ExtResource("2_qxla5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.327, -0.446)
