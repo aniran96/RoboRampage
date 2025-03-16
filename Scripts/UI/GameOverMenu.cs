@@ -23,6 +23,7 @@ public partial class GameOverMenu : Control
 
 	public void GameOver() 
 	{
+		GetTree().Paused = true;
 		Visible = true;
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 	}
@@ -34,6 +35,7 @@ public partial class GameOverMenu : Control
 
     private void OnRestartButtonPressed()
     {
+		GetTree().Paused = false;
         GetTree().ReloadCurrentScene();
     }
 }

@@ -36,6 +36,7 @@ public partial class Player : CharacterBody3D
 			_hitPoints = value;
 			if ( _hitPoints <= 0 ) 
 			{
+				
 				_gameOverMenuNode.GameOver();
 			}
 		}
