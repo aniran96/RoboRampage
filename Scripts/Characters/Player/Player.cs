@@ -5,6 +5,9 @@ public partial class Player : CharacterBody3D
 {
 	// node references
 	private Node3D _cameraPivotNode;
+	
+	[Export]
+	private AnimationPlayer _damageAnimPlayerNode;
 
 	// variables
 	[ Export ]
@@ -15,7 +18,8 @@ public partial class Player : CharacterBody3D
 	private float _fallMultiplier = 2.5f;
 	[Export]
 	private int _maxHitPoints = 100;
-
+	[Export]
+	private GameOverMenu _gameOverMenuNode;
 	private int _hitPoints;
 
 	public int HitPoints 
@@ -23,10 +27,16 @@ public partial class Player : CharacterBody3D
 		get { return _hitPoints;}
 		set 
 		{
+			if ( value < _hitPoints ) 
+			{
+				_damageAnimPlayerNode.Stop( false );
+				_damageAnimPlayerNode.Play( GameConstants.TAKE_DAMAGE );
+			}
+
 			_hitPoints = value;
 			if ( _hitPoints <= 0 ) 
 			{
-				GetTree().Quit();
+				_gameOverMenuNode.GameOver();
 			}
 		}
 	}

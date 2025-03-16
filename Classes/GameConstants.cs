@@ -19,5 +19,6 @@ public class GameConstants
     public static readonly StringName FREE_CAMERA = "free_camera";
     public static readonly StringName ENEMY_ATTACK = "Attack";
     public static readonly StringName SHOOT = "shoot";
+    public static readonly StringName TAKE_DAMAGE = "TakeDamage";
     
 }
