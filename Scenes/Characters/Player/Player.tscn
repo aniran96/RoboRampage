@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://h0cv8e8q67f1"]
+[gd_scene load_steps=11 format=3 uid="uid://h0cv8e8q67f1"]
 
 [ext_resource type="Script" uid="uid://yadsuu2lk86b" path="res://Scripts/Characters/Player/Player.cs" id="1_no7dv"]
 [ext_resource type="CapsuleMesh" uid="uid://fkk867kl5063" path="res://Resources/Files/Meshes/CapsuleMesh.tres" id="2_7vix2"]
@@ -6,6 +6,69 @@
 [ext_resource type="Script" uid="uid://do0xlw2fivej6" path="res://Scripts/Characters/Player/CrossHair.cs" id="3_gqvyu"]
 [ext_resource type="Shape3D" uid="uid://d1anjug6eqjou" path="res://Resources/Files/Meshes/CapsuleCollider.tres" id="3_gu5w3"]
 [ext_resource type="PackedScene" uid="uid://cd50qg0r0vmar" path="res://Scenes/Weapons/SMG.tscn" id="5_gu5w3"]
+[ext_resource type="Texture2D" uid="uid://dprhr2jlkh315" path="res://Assets/Sprites/damage.png" id="7_ov5rv"]
+
+[sub_resource type="Animation" id="Animation_ov5rv"]
+resource_name = "TakeDamage"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xst4l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xst4l"]
+_data = {
+&"RESET": SubResource("Animation_xst4l"),
+&"TakeDamage": SubResource("Animation_ov5rv")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_no7dv")
@@ -59,3 +122,17 @@ grow_vertical = 2
 [node name="CrossHair" type="Control" parent="CenterContainer"]
 layout_mode = 2
 script = ExtResource("3_gqvyu")
+
+[node name="DamageTexture" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("7_ov5rv")
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="DamageTexture"]
+libraries = {
+&"": SubResource("AnimationLibrary_xst4l")
+}
