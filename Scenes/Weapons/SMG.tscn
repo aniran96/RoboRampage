@@ -42,5 +42,6 @@ lifetime = 0.07
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qxla5")
 draw_pass_1 = SubResource("BoxMesh_dxyhc")
