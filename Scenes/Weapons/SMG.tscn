@@ -32,10 +32,38 @@ _weaponMesh = NodePath("SMGMesh")
 _muzzleFlash = NodePath("MuzzleFlash")
 
 [node name="SMGMesh" parent="." index="1" instance=ExtResource("2_qxla5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.327, -0.446)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -1.8)
+
+[node name="Suppressors_003" parent="SMGMesh" index="0"]
+layers = 2
+
+[node name="Part_024" parent="SMGMesh" index="1"]
+layers = 2
+
+[node name="Rail_009" parent="SMGMesh" index="2"]
+layers = 2
+
+[node name="Grip_017" parent="SMGMesh" index="3"]
+layers = 2
+
+[node name="Charger_011" parent="SMGMesh" index="4"]
+layers = 2
+
+[node name="Scope_016" parent="SMGMesh" index="5"]
+layers = 2
+
+[node name="Part_029" parent="SMGMesh" index="6"]
+layers = 2
+
+[node name="Part_030" parent="SMGMesh" index="7"]
+layers = 2
+
+[node name="Gun butt_012" parent="SMGMesh" index="8"]
+layers = 2
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.28, -1.58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3, -2.9)
+layers = 2
 material_override = SubResource("StandardMaterial3D_qxla5")
 cast_shadow = 0
 emitting = false
@@ -46,3 +74,5 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qxla5")
 draw_pass_1 = SubResource("BoxMesh_dxyhc")
+
+[editable path="SMGMesh"]
