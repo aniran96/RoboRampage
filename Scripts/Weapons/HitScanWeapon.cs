@@ -67,12 +67,7 @@ public partial class HitScanWeapon : Node3D
 		if ( collider != null && (collider.IsClass( nameof( CharacterBody3D ) ) ) )
 		{
 			Enemy enemy = (Enemy)collider;
-			enemy.HitPoints -= _weaponDamage;
-			
-		}
-		else 
-		{
-			return;
+			enemy.HitPoints -= _weaponDamage;	
 		}
 		var sparks = _sparksScene.Instantiate<GpuParticles3D>();
 		AddChild(sparks);

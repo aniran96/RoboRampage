@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://v5txlgyj8pvm"]
+[gd_scene load_steps=3 format=3 uid="uid://v5txlgyj8pvm"]
 
 [ext_resource type="Script" uid="uid://blki5tylo3rst" path="res://Scripts/Weapons/HitScanWeapon.cs" id="1_e8auj"]
+[ext_resource type="PackedScene" uid="uid://y0lyry2llpwv" path="res://Scenes/Weapons/Sparks.tscn" id="2_smc18"]
 
 [node name="HitScanWeapon" type="Node3D"]
 script = ExtResource("1_e8auj")
+_sparksScene = ExtResource("2_smc18")
 _fireRate = 14.0
 _recoilDist = 0.05
 
