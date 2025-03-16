@@ -34,6 +34,7 @@ _fireRate = 8.0
 _recoilDist = 0.3
 _rayCastDist = 50.0
 _weaponDamage = 70
+_isAutomatic = false
 
 [node name="RifleMesh" parent="." index="1" instance=ExtResource("2_pqb4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -1.8)
