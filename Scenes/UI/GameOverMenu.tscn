@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd5v3hdke6ajs"]
+[gd_scene load_steps=8 format=3 uid="uid://cd5v3hdke6ajs"]
 
 [ext_resource type="FontFile" uid="uid://7rn8kjdc3agd" path="res://Assets/Fonts/BigShoulders_18pt-Black.ttf" id="1_cafdt"]
 [ext_resource type="Script" uid="uid://b00uqdol8jf0" path="res://Scripts/UI/GameOverMenu.cs" id="2_pehtk"]
+[ext_resource type="Shader" uid="uid://0nqlc8jndyk4" path="res://Resources/Files/UI/GameOverMenu.tres" id="3_10vwm"]
 
 [sub_resource type="Theme" id="Theme_pehtk"]
 default_font = ExtResource("1_cafdt")
 default_font_size = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pehtk"]
+shader = ExtResource("3_10vwm")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pehtk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cafdt"]
 font_size = 96
@@ -22,6 +28,16 @@ theme = SubResource("Theme_pehtk")
 script = ExtResource("2_pehtk")
 _restartButtonNode = NodePath("CenterContainer/VBoxContainer/RestartButton")
 _quitButtonNode = NodePath("CenterContainer/VBoxContainer/QuitButton")
+
+[node name="BackGroundBlur" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_pehtk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_pehtk")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
