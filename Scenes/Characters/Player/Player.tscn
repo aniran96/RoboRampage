@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://h0cv8e8q67f1"]
+[gd_scene load_steps=14 format=3 uid="uid://h0cv8e8q67f1"]
 
 [ext_resource type="Script" uid="uid://yadsuu2lk86b" path="res://Scripts/Characters/Player/Player.cs" id="1_no7dv"]
 [ext_resource type="CapsuleMesh" uid="uid://fkk867kl5063" path="res://Resources/Files/Meshes/CapsuleMesh.tres" id="2_7vix2"]
 [ext_resource type="Script" uid="uid://bw67e72111qh7" path="res://Scripts/Characters/Player/PlayerSmoothCamera3D.cs" id="2_8y2kw"]
 [ext_resource type="Script" uid="uid://do0xlw2fivej6" path="res://Scripts/Characters/Player/CrossHair.cs" id="3_gqvyu"]
 [ext_resource type="Shape3D" uid="uid://d1anjug6eqjou" path="res://Resources/Files/Meshes/CapsuleCollider.tres" id="3_gu5w3"]
+[ext_resource type="Script" uid="uid://dhs7rhq8i0l85" path="res://Scripts/Weapons/WeaponHandler.cs" id="5_m81am"]
 [ext_resource type="PackedScene" uid="uid://d26mp31w8jif6" path="res://Scenes/Weapons/Rifle.tscn" id="5_xst4l"]
+[ext_resource type="PackedScene" uid="uid://cd50qg0r0vmar" path="res://Scenes/Weapons/SMG.tscn" id="6_p3isv"]
 [ext_resource type="Texture2D" uid="uid://dprhr2jlkh315" path="res://Assets/Sprites/damage.png" id="7_ov5rv"]
 [ext_resource type="PackedScene" uid="uid://cd5v3hdke6ajs" path="res://Scenes/UI/GameOverMenu.tscn" id="8_xst4l"]
 
@@ -91,9 +93,6 @@ top_level = true
 cull_mask = 1048573
 script = ExtResource("2_8y2kw")
 
-[node name="Rife" parent="CameraPivot/PlayerSmoothCamera3D" instance=ExtResource("5_xst4l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="CameraPivot/PlayerSmoothCamera3D"]
 remote_path = NodePath("../../../SubViewportContainer/SubViewport/WeaponCamera")
 
@@ -115,6 +114,16 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 cull_mask = 2
 fov = 40.0
+
+[node name="WeaponHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("_weapon1", "_weapon2")]
+script = ExtResource("5_m81am")
+_weapon1 = NodePath("Rifle")
+_weapon2 = NodePath("SMG")
+
+[node name="Rifle" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" instance=ExtResource("5_xst4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" instance=ExtResource("6_p3isv")]
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
