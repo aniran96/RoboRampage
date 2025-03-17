@@ -20,5 +20,7 @@ public class GameConstants
     public static readonly StringName ENEMY_ATTACK = "Attack";
     public static readonly StringName SHOOT = "shoot";
     public static readonly StringName TAKE_DAMAGE = "TakeDamage";
+    public static readonly StringName WEAPON_1 = "weapon_1";
+    public static readonly StringName WEAPON_2 = "weapon_2";
     
 }

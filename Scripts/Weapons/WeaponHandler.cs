@@ -28,4 +28,16 @@ public partial class WeaponHandler : Node3D
             }
         }
     }
+
+    public override void _UnhandledInput(InputEvent evt)
+    {
+        if ( evt.IsActionPressed(GameConstants.WEAPON_1) ) 
+        {
+            Equip( _weapon1 );
+        }        
+        else if ( evt.IsActionPressed( GameConstants.WEAPON_2 ) ) 
+        {
+            Equip( _weapon2 );
+        }
+    }
 }
