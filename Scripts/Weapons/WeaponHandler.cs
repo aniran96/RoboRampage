@@ -39,5 +39,28 @@ public partial class WeaponHandler : Node3D
         {
             Equip( _weapon2 );
         }
+        if ( evt.IsActionPressed(GameConstants.NEXT_WEAPON) ) 
+            {
+                NextWeapon();
+            }
+    }
+
+    private void NextWeapon() 
+    {
+        var index = GetCurrentIndex();
+        index = Mathf.Wrap( index +1, 0, GetChildren().Count);
+        Equip(GetChild<Node3D>(index));
+    }
+
+    private int GetCurrentIndex() 
+    {
+        for ( int index = 0; index < GetChildren().Count; index++ ) 
+        {
+            if ( GetChild<Node3D>(index).Visible ) 
+            {
+                return index;
+            }
+        }
+        return 0;
     }
 }
