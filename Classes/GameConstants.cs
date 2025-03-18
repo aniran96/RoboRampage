@@ -23,5 +23,6 @@ public class GameConstants
     public static readonly StringName WEAPON_1 = "weapon_1";
     public static readonly StringName WEAPON_2 = "weapon_2";
     public static readonly StringName NEXT_WEAPON = "next_weapon";
+    public static readonly StringName LAST_WEAPON = "last_weapon";
     
 }

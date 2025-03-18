@@ -43,6 +43,10 @@ public partial class WeaponHandler : Node3D
             {
                 NextWeapon();
             }
+        if ( evt.IsActionPressed(GameConstants.LAST_WEAPON) ) 
+        {
+            LastWeapon();
+        }
     }
 
     private void NextWeapon() 
@@ -63,4 +67,13 @@ public partial class WeaponHandler : Node3D
         }
         return 0;
     }
+
+    private void LastWeapon() 
+    {
+        var index = GetCurrentIndex();
+        index = Mathf.Wrap( index -1, 0, GetChildren().Count );
+        Equip(GetChild<Node3D>(index));
+    }
+
+ 
 }
