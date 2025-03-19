@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h0cv8e8q67f1"]
+[gd_scene load_steps=15 format=3 uid="uid://h0cv8e8q67f1"]
 
 [ext_resource type="Script" uid="uid://yadsuu2lk86b" path="res://Scripts/Characters/Player/Player.cs" id="1_no7dv"]
 [ext_resource type="CapsuleMesh" uid="uid://fkk867kl5063" path="res://Resources/Files/Meshes/CapsuleMesh.tres" id="2_7vix2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d26mp31w8jif6" path="res://Scenes/Weapons/Rifle.tscn" id="5_xst4l"]
 [ext_resource type="PackedScene" uid="uid://cd50qg0r0vmar" path="res://Scenes/Weapons/SMG.tscn" id="6_p3isv"]
 [ext_resource type="Texture2D" uid="uid://dprhr2jlkh315" path="res://Assets/Sprites/damage.png" id="7_ov5rv"]
+[ext_resource type="Script" uid="uid://kererkhhih7i" path="res://Scripts/Weapons/AmmoHandler.cs" id="8_n0syu"]
 [ext_resource type="PackedScene" uid="uid://cd5v3hdke6ajs" path="res://Scenes/UI/GameOverMenu.tscn" id="8_xst4l"]
 
 [sub_resource type="Animation" id="Animation_xst4l"]
@@ -124,6 +125,9 @@ _weapon2 = NodePath("SMG")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 
 [node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" instance=ExtResource("6_p3isv")]
+
+[node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera"]
+script = ExtResource("8_n0syu")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
